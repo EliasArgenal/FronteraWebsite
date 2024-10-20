@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6a000a78447ab8a73261c577233b3dfb",
+    "revision": "b14f8c1b2472d5fe81d58b491bdf5afb",
     "url": "/FronteraWebsite/index.html"
   },
   {
