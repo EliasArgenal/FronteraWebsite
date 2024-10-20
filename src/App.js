@@ -62,8 +62,9 @@ function App() {
 
             <button onClick={isRegistering ? handleSignUp : handleLogin}>
               {isRegistering ? 'Sign Up' : 'Login'}
+              
             </button>
-
+            
             <button onClick={() => setIsRegistering(!isRegistering)}>
               {isRegistering ? 'Already have an account? Log in' : 'Need an account? Sign up'}
             </button>
