@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase-config'; // Firebase config
-import logo from './logo.svg'; // You can use a banking-related logo instead of React's
+import logo from './SmartWallet.png'; // You can use a banking-related logo instead of React's
 
 function App() {
   const [email, setEmail] = useState('');

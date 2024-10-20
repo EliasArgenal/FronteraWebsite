@@ -1,7 +1,8 @@
 /* General app styling */
+
 .App {
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #383232;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,12 +11,12 @@
 }
 
 .App-logo {
-  height: 40px;
+  height: 150px;
   margin-bottom: 20px;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #3b362d;
   color: white;
   padding: 40px;
   border-radius: 10px;
