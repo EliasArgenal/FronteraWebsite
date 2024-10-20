@@ -45,6 +45,11 @@ function App() {
     // Add the logic to navigate to or handle transfer funds page here
   }
 
+  // Function to handle clicking "View Statements"
+  const handleViewStatements = () => {
+    alert('ViewStatements functionality coming soon!');
+  }
+
   return (
     <div className="App">
       <header className="App-header">
