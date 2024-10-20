@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/fronterawebsite/static/css/main.f3e5acb7.chunk.css",
-    "main.js": "/fronterawebsite/static/js/main.6a00139e.chunk.js",
-    "main.js.map": "/fronterawebsite/static/js/main.6a00139e.chunk.js.map",
-    "runtime~main.js": "/fronterawebsite/static/js/runtime~main.927ef9ca.js",
-    "runtime~main.js.map": "/fronterawebsite/static/js/runtime~main.927ef9ca.js.map",
-    "static/js/2.8f474d4c.chunk.js": "/fronterawebsite/static/js/2.8f474d4c.chunk.js",
-    "static/js/2.8f474d4c.chunk.js.map": "/fronterawebsite/static/js/2.8f474d4c.chunk.js.map",
-    "static/js/3.1af95c37.chunk.js": "/fronterawebsite/static/js/3.1af95c37.chunk.js",
-    "static/js/3.1af95c37.chunk.js.map": "/fronterawebsite/static/js/3.1af95c37.chunk.js.map",
-    "index.html": "/fronterawebsite/index.html",
-    "precache-manifest.9c739761371cbf500e27a6adefea3fbe.js": "/fronterawebsite/precache-manifest.9c739761371cbf500e27a6adefea3fbe.js",
-    "service-worker.js": "/fronterawebsite/service-worker.js",
-    "static/css/main.f3e5acb7.chunk.css.map": "/fronterawebsite/static/css/main.f3e5acb7.chunk.css.map",
-    "static/media/SmartWallet.png": "/fronterawebsite/static/media/SmartWallet.bd9f6140.png"
+    "main.css": "/FronteraWebsite/static/css/main.f3e5acb7.chunk.css",
+    "main.js": "/FronteraWebsite/static/js/main.6a00139e.chunk.js",
+    "main.js.map": "/FronteraWebsite/static/js/main.6a00139e.chunk.js.map",
+    "runtime~main.js": "/FronteraWebsite/static/js/runtime~main.57766d82.js",
+    "runtime~main.js.map": "/FronteraWebsite/static/js/runtime~main.57766d82.js.map",
+    "static/js/2.c69218ed.chunk.js": "/FronteraWebsite/static/js/2.c69218ed.chunk.js",
+    "static/js/2.c69218ed.chunk.js.map": "/FronteraWebsite/static/js/2.c69218ed.chunk.js.map",
+    "static/js/3.1af95c37.chunk.js": "/FronteraWebsite/static/js/3.1af95c37.chunk.js",
+    "static/js/3.1af95c37.chunk.js.map": "/FronteraWebsite/static/js/3.1af95c37.chunk.js.map",
+    "index.html": "/FronteraWebsite/index.html",
+    "precache-manifest.4bb4e950a040c8974e9e7222ff8333f2.js": "/FronteraWebsite/precache-manifest.4bb4e950a040c8974e9e7222ff8333f2.js",
+    "service-worker.js": "/FronteraWebsite/service-worker.js",
+    "static/css/main.f3e5acb7.chunk.css.map": "/FronteraWebsite/static/css/main.f3e5acb7.chunk.css.map",
+    "static/media/SmartWallet.png": "/FronteraWebsite/static/media/SmartWallet.bd9f6140.png"
   }
 }
