@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Arial, sans-serif;
 }
 
 .App-logo {
@@ -19,10 +20,12 @@
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 500px; /* Adjusted width for a centered form look */
 }
 
-/* Login Form */
-.login-form input {
+/* Login/Signup Form */
+input[type="email"],
+input[type="password"] {
   display: block;
   width: 300px;
   padding: 10px;
@@ -31,7 +34,7 @@
   border-radius: 4px;
 }
 
-.login-form button {
+button {
   padding: 10px 20px;
   background-color: #61dafb;
   border: none;
@@ -40,7 +43,7 @@
   font-size: 16px;
 }
 
-.login-form button:hover {
+button:hover {
   background-color: #21a1f1;
 }
 

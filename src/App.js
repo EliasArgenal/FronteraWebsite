@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
 import './App.css';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase-config'; // Firebase config
 import logo from './logo.svg'; // You can use a banking-related logo instead of React's
 
 function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Handle user login
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setIsLoggedIn(true); // Set user as logged in
-      setErrorMessage('');  // Clear error message on success
+      alert('Logged in successfully');
     } catch (error) {
-      setErrorMessage(error.message); // Display error message if login fails
+      setErrorMessage(error.message);
+    }
+  };
+
+  // Handle user registration (sign-up)
+  const handleSignUp = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      setIsLoggedIn(true); // Automatically log in after sign-up
+      alert('Account created successfully');
+    } catch (error) {
+      setErrorMessage(error.message);
     }
   };
 
@@ -24,11 +37,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
+        
+        {/* Conditional rendering: Show login/signup form if not logged in, else show dashboard */}
         {!isLoggedIn ? (
-          <div className="login-form">
-            <h2>Banking Login</h2>
+          <div>
+            <h2>{isRegistering ? 'Sign Up' : 'Login'}</h2>
             {errorMessage && <p className="error">{errorMessage}</p>}
+
             <input
               type="email"
               placeholder="Email"
@@ -41,7 +56,14 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={handleLogin}>Login</button>
+
+            <button onClick={isRegistering ? handleSignUp : handleLogin}>
+              {isRegistering ? 'Sign Up' : 'Login'}
+            </button>
+
+            <button onClick={() => setIsRegistering(!isRegistering)}>
+              {isRegistering ? 'Already have an account? Log in' : 'Need an account? Sign up'}
+            </button>
           </div>
         ) : (
           <div className="dashboard">
