@@ -75,8 +75,8 @@ button:hover {
   text-align: left;
   margin-top: 20px;
   padding: 20px;
-  background-color: #2e2b2b;
-  color: #fff; /* Set the text color to white */
+  background-color: #fff;
+  color: #000;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 600px;
@@ -109,14 +109,13 @@ button:hover {
   padding: 10px;
   margin: 5px;
   background-color: #0b0505;
-  color: white; /* Button text color */
   border: none;
   border-radius: 10px;
   cursor: pointer;
 }
 
 .actions button:hover {
-  background-color: #21a1f1;
+  background-color: #45a049;
 }
 
 /* Logo Container */
