@@ -169,3 +169,24 @@ button:hover {
   margin-left: 5px;
   font-family: 'Roboto', sans-serif;
 }
+
+/* New page styling for the individual pages */
+.page {
+  text-align: center;
+  padding: 40px;
+}
+
+.home-btn {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.home-btn:hover {
+  background-color: darkblue;
+}
