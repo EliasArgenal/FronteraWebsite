@@ -1,5 +1,4 @@
 /* General app styling */
-
 .App {
   text-align: center;
   background-color: #383232;
@@ -21,7 +20,7 @@
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 500px; /* Adjusted width for a centered form look */
+  width: 500px;
 }
 
 /* Login/Signup Form */
@@ -49,6 +48,22 @@ button:hover {
   background-color: #21a1f1;
 }
 
+/* Google Sign-In Button */
+.google-signin {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #4285F4; /* Google Blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.google-signin:hover {
+  background-color: #357AE8;
+}
+
 /* Error Message */
 .error {
   color: red;
@@ -60,8 +75,8 @@ button:hover {
   text-align: left;
   margin-top: 20px;
   padding: 20px;
-  background-color: #000;
-  color: #000;
+  background-color: #2e2b2b;
+  color: #fff; /* Set the text color to white */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 600px;
@@ -94,6 +109,7 @@ button:hover {
   padding: 10px;
   margin: 5px;
   background-color: #0b0505;
+  color: white; /* Button text color */
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -103,6 +119,7 @@ button:hover {
   background-color: #21a1f1;
 }
 
+/* Logo Container */
 .logo-container {
   display: flex;
   align-items: center;
@@ -112,6 +129,6 @@ button:hover {
 .App-title {
   font-size: 2rem;
   color: white;
-  margin-left: 5px; 
+  margin-left: 5px;
   font-family: 'Roboto', sans-serif;
 }

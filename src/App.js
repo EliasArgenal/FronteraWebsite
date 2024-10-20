@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase-config'; // Firebase config
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
+import { auth,googleProvider } from './firebase-config'; // Firebase config
 import logo from './SmartWallet.png'; // You can use a banking-related logo instead of React's
 
 function App() {
@@ -10,6 +10,20 @@ function App() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [errorMessage, setErrorMessage] = useState('');
+
+  
+    const handleGoogleSignIn = async () => {
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        alert(`Welcome ${user.displayName}!`);
+        console.log('User Info:', user); // You can also check other user properties here
+      } catch (error) {
+        console.error('Error during Google sign-in:', error);
+        alert(`Error: ${error.message}`);
+      }
+    };
+    
 
   // Handle user login
   const handleLogin = async () => {
@@ -80,6 +94,12 @@ function App() {
             <button onClick={() => setIsRegistering(!isRegistering)}>
               {isRegistering ? 'Already have an account? Log in' : 'Need an account? Sign up'}
             </button>
+
+             {/* Google Sign-In Button */}
+             <button onClick={handleGoogleSignIn} className="google-signin">
+              Sign in with Google
+            </button>
+
           </div>
         ) : (
           <div className="dashboard">
