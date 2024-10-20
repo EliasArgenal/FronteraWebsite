@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/FronteraWebsite/static/css/main.7eedc3fe.css",
-    "main.js": "/FronteraWebsite/static/js/main.f1cc2392.js",
-    "static/js/453.57423a27.chunk.js": "/FronteraWebsite/static/js/453.57423a27.chunk.js",
-    "static/media/SmartWallet.png": "/FronteraWebsite/static/media/SmartWallet.e9953a189c1a1d2a01a9.png",
+    "main.css": "/FronteraWebsite/static/css/main.826d5879.chunk.css",
+    "main.js": "/FronteraWebsite/static/js/main.fe886bac.chunk.js",
+    "main.js.map": "/FronteraWebsite/static/js/main.fe886bac.chunk.js.map",
+    "runtime~main.js": "/FronteraWebsite/static/js/runtime~main.57766d82.js",
+    "runtime~main.js.map": "/FronteraWebsite/static/js/runtime~main.57766d82.js.map",
+    "static/js/2.c69218ed.chunk.js": "/FronteraWebsite/static/js/2.c69218ed.chunk.js",
+    "static/js/2.c69218ed.chunk.js.map": "/FronteraWebsite/static/js/2.c69218ed.chunk.js.map",
+    "static/js/3.1af95c37.chunk.js": "/FronteraWebsite/static/js/3.1af95c37.chunk.js",
+    "static/js/3.1af95c37.chunk.js.map": "/FronteraWebsite/static/js/3.1af95c37.chunk.js.map",
     "index.html": "/FronteraWebsite/index.html",
-    "main.7eedc3fe.css.map": "/FronteraWebsite/static/css/main.7eedc3fe.css.map",
-    "main.f1cc2392.js.map": "/FronteraWebsite/static/js/main.f1cc2392.js.map",
-    "453.57423a27.chunk.js.map": "/FronteraWebsite/static/js/453.57423a27.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.7eedc3fe.css",
-    "static/js/main.f1cc2392.js"
-  ]
+    "precache-manifest.3721c6c13a07a3b29d3281b9b358279c.js": "/FronteraWebsite/precache-manifest.3721c6c13a07a3b29d3281b9b358279c.js",
+    "service-worker.js": "/FronteraWebsite/service-worker.js",
+    "static/css/main.826d5879.chunk.css.map": "/FronteraWebsite/static/css/main.826d5879.chunk.css.map",
+    "static/media/SmartWallet.png": "/FronteraWebsite/static/media/SmartWallet.bd9f6140.png"
+  }
 }
