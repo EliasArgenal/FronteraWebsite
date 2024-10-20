@@ -47,37 +47,44 @@ function App() {
     }
   };
 
-  // Function to handle clicking "Transfer Funds" action
-  const handleTransferFunds = () => {
-    alert('Transfer Funds functionality coming soon!');
-    // Add the logic to navigate to or handle transfer funds page here
-  }
+  // Function to handle logout
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    alert('Logged out successfully');
+  };
 
-  // Function to handle clicking "Pay Bills" action
-  const handlePayBills = () => {
-    alert('PayBills functionality coming soon!');
-    // Add the logic to navigate to or handle transfer funds page here
-  }
-
-  // Function to handle clicking "View Statements"
-  const handleViewStatements = () => {
-    alert('ViewStatements functionality coming soon!');
-  }
+  // Button handlers for dashboard options
+    // Debt button
+  const handleDebtClick = () => {
+    alert('Under construction!'); // to be edited
+  };
+    // Income&expenses button
+  const handleIncomeExpensesClick = () => {
+    alert('Under construction!'); // to be edited
+  };
+  
+    // Savings & budgeting button
+  const handleSavingsBudgetingClick = () => {
+    alert('Under construction!'); // to be edited
+  };
+  
+    // TBD button
+  const handleTBDClick = () => {
+    alert('Under construction!'); // Placeholder action for TBD button
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-      <div className="logo-container">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">SmartWallet</h1>
-      </div>
-        
-        {/* Conditional rendering: Show login/signup form if not logged in, else show dashboard */}
+        <div className="logo-container">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">SmartWallet</h1>
+        </div>
+
         {!isLoggedIn ? (
           <div>
             <h2>{isRegistering ? 'Sign Up' : 'Login'}</h2>
             {errorMessage && <p className="error">{errorMessage}</p>}
-
             <input
               type="email"
               placeholder="Email"
@@ -90,45 +97,26 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
             <button onClick={isRegistering ? handleSignUp : handleLogin}>
               {isRegistering ? 'Sign Up' : 'Login'}
-              
             </button>
-            
             <button onClick={() => setIsRegistering(!isRegistering)}>
               {isRegistering ? 'Already have an account? Log in' : 'Need an account? Sign up'}
             </button>
-
-             {/* Google Sign-In Button */}
-             <button onClick={handleGoogleSignIn} className="google-signin">
+            <button onClick={handleGoogleSignIn} className="google-signin">
               Sign in with Google
             </button>
-
           </div>
         ) : (
           <div className="dashboard">
-            <h2>Welcome to Your Dashboard</h2>
-            <div className="account-info">
-              <h3>Account Overview</h3>
-              <p>Balance: $5,000.00</p>
-              <p>Account Number: 1234-5678-9101-1121</p>
+            <h2>User's Dashboard</h2>
+            <div className="button-grid">
+              <button className="dashboard-btn" onClick={handleDebtClick}>Debt</button>
+              <button className="dashboard-btn" onClick={handleIncomeExpensesClick}>Income & Expenses</button>
+              <button className="dashboard-btn" onClick={handleSavingsBudgetingClick}>Savings & Budgeting</button>
+              <button className="dashboard-btn" onClick={handleTBDClick}>TBD</button>
             </div>
-
-            <div className="transactions">
-              <h3>Recent Transactions</h3>
-              <ul>
-                <li>Deposit: $500 on Oct 19, 2024</li>
-                <li>Withdrawal: $100 on Oct 18, 2024</li>
-                <li>Payment: $150 on Oct 17, 2024</li>
-              </ul>
-            </div>
-
-            <div className="actions">
-              <button onClick={handleTransferFunds}>Transfer Funds</button>
-              <button onClick={handlePayBills}>Pay Bills</button>
-              <button>View Statements</button>
-            </div>
+            <button className="logout-btn" onClick={handleLogout}>Log Out</button>
           </div>
         )}
       </header>

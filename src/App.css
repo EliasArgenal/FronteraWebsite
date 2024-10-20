@@ -70,16 +70,54 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Dashboard */
 .dashboard {
-  text-align: left;
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #fff;
-  color: #000;
+  text-align: center;
+  padding: 40px;
+  background-color: white; /* White background */
+  color: black;
   border-radius: 10px;
+  width: 400px; /* Adjusted width for smaller, centered look */
+  margin: 0 auto; /* Center horizontally */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 600px;
+}
+
+/* Button grid for dashboard */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-gap: 20px; /* Spacing between buttons */
+  margin-top: 20px;
+}
+
+/* Buttons in the dashboard */
+.dashboard-btn {
+  background-color: green;
+  color: white;
+  padding: 15px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dashboard-btn:hover {
+  background-color: darkgreen;
+}
+
+/* Log Out button */
+.logout-btn {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.logout-btn:hover {
+  background-color: darkred;
 }
 
 .account-info,
