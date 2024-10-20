@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/FronteraWebsite/static/css/main.4fe5045b.chunk.css",
+    "main.js": "/FronteraWebsite/static/js/main.9e4fe97a.chunk.js",
+    "main.js.map": "/FronteraWebsite/static/js/main.9e4fe97a.chunk.js.map",
+    "runtime~main.js": "/FronteraWebsite/static/js/runtime~main.57766d82.js",
+    "runtime~main.js.map": "/FronteraWebsite/static/js/runtime~main.57766d82.js.map",
+    "static/js/2.c69218ed.chunk.js": "/FronteraWebsite/static/js/2.c69218ed.chunk.js",
+    "static/js/2.c69218ed.chunk.js.map": "/FronteraWebsite/static/js/2.c69218ed.chunk.js.map",
+    "static/js/3.1af95c37.chunk.js": "/FronteraWebsite/static/js/3.1af95c37.chunk.js",
+    "static/js/3.1af95c37.chunk.js.map": "/FronteraWebsite/static/js/3.1af95c37.chunk.js.map",
+    "index.html": "/FronteraWebsite/index.html",
+    "precache-manifest.1b0d6f316f037eac029159425681e389.js": "/FronteraWebsite/precache-manifest.1b0d6f316f037eac029159425681e389.js",
+    "service-worker.js": "/FronteraWebsite/service-worker.js",
+    "static/css/main.4fe5045b.chunk.css.map": "/FronteraWebsite/static/css/main.4fe5045b.chunk.css.map",
+    "static/media/logo.svg": "/FronteraWebsite/static/media/logo.06e73328.svg"
+  }
+}
