@@ -39,6 +39,16 @@ function App() {
     // Add the logic to navigate to or handle transfer funds page here
   }
 
+  // Function to handle clicking "Pay Bills" action
+  const handlePayBills = () => {
+    alert('PayBills functionality coming soon!');
+    // Add the logic to navigate to or handle transfer funds page here
+  }
+
+
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -95,7 +105,7 @@ function App() {
 
             <div className="actions">
               <button onClick={handleTransferFunds}>Transfer Funds</button>
-              <button>Pay Bills</button>
+              <button onClick={handlePayBills}>Pay Bills</button>
               <button>View Statements</button>
             </div>
           </div>

@@ -33,6 +33,7 @@ input[type="password"] {
   margin: 10px auto;
   border: 1px solid #000000;
   border-radius: 4px;
+  color: #000;
 }
 
 button {
@@ -60,7 +61,7 @@ button:hover {
   margin-top: 20px;
   padding: 20px;
   background-color: #000;
-  color: #333;
+  color: #000;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 600px;
