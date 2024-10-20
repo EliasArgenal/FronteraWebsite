@@ -101,3 +101,16 @@ button:hover {
 .actions button:hover {
   background-color: #21a1f1;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-title {
+  font-size: 2rem;
+  color: white;
+  margin-left: 5px; 
+  font-family: 'Roboto', sans-serif;
+}

@@ -36,7 +36,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <div className="logo-container">
         <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">SmartWallet</h1>
+      </div>
         
         {/* Conditional rendering: Show login/signup form if not logged in, else show dashboard */}
         {!isLoggedIn ? (
