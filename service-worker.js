@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/FronteraWebsite/precache-manifest.2a643df2eab3e5d31b9175758dc85271.js"
+  "/FronteraWebsite/precache-manifest.0e92a38b2f673387a232a32450ca1fe5.js"
 );
 
 self.addEventListener('message', (event) => {
