@@ -2,7 +2,7 @@
   "name": "personal-finance-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://eliasargenal.github.io/fronterawebsite",
+  "homepage": "http://eliasargenal.github.io/FronteraWebsite/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
