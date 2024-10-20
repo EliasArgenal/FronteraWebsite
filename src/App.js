@@ -45,10 +45,6 @@ function App() {
     // Add the logic to navigate to or handle transfer funds page here
   }
 
-
-
-
-
   return (
     <div className="App">
       <header className="App-header">
