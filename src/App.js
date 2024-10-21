@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; // to switch between pages
+import { HashRouter as Router } from 'react-router-dom'; // to switch between pages
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
 import { auth,googleProvider } from './firebase-config'; // Firebase config
 import logo from './SmartWallet.png'; // You can use a banking-related logo instead of React's
