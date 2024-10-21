@@ -76,7 +76,8 @@ button:hover {
   background-color: white; /* White background */
   color: black;
   border-radius: 10px;
-  width: 400px; /* Adjusted width for smaller, centered look */
+  width: 80%; /* Adjusted width for smaller, centered look */
+  max-width: 800px;
   margin: 0 auto; /* Center horizontally */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
