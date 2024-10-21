@@ -98,6 +98,9 @@ button:hover {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  width: 220px; /* Set a consistent width for all buttons */
+  min-width: 220px; /* Ensure the buttons can't be smaller than this */
+  text-align: center;
 }
 
 .dashboard-btn:hover {
