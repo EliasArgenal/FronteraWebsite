@@ -1,4 +1,4 @@
-import IncomeExpenses from '.IncomeExpenses'; // Income & Expenses feature
+import IncomeExpenses from './IncomeExpenses'; // Income & Expenses feature
 import React, { useState } from 'react';
 import './App.css';
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'; // to switch between pages
@@ -150,7 +150,7 @@ function Debt() {
   );
 }
 
-function IncomeExpenses() {
+function IncomenExpenses() {
   return (
     <div className="page">
       <h1>Income & Expenses</h1>
