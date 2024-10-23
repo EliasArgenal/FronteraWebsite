@@ -18,7 +18,19 @@ function IncomeExpenses() {
     setNewEntry({ type: '', amount: '', category: '', comments: '' }); // Reset form after adding
   };
 
+  // Remove an entry from Firestore and local state
+  const handleRemoveEntry = async (id) => {
+    try {
+      // Remove from Firestore
+      const docRef = doc(db, 'entries', id);
+      await deleteDoc(docRef);
   
+      // Remove from local state
+      setEntries(entries.filter((entry) => entry.id !== id));
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    }
+  };
 
 
 
@@ -44,6 +56,14 @@ function IncomeExpenses() {
               <td>{entry.amount}</td>
               <td>{entry.category}</td>
               <td>{entry.comments}</td>
+              <td>
+            <button
+    className="remove-btn"
+    onClick={() => handleRemoveEntry(entry.id)}
+  >
+    X
+  </button> {/* Pass the entry's ID for deletion */}
+</td>
     </tr>
   ))}
         </tbody>
