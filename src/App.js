@@ -22,6 +22,8 @@ function App() {
         const user = result.user;
         alert(`Welcome ${user.displayName}!`);
         console.log('User Info:', user); // You can also check other user properties here
+        await storeUserData(user.uid,user.email);
+      
       } catch (error) {
         console.error('Error during Google sign-in:', error);
         alert(`Error: ${error.message}`);
@@ -46,6 +48,8 @@ function App() {
       await createUserWithEmailAndPassword(auth, email, password);
       setIsLoggedIn(true); // Automatically log in after sign-up
       alert('Account created successfully');
+
+      await storeUserData(user.uid,user.email);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -177,4 +181,22 @@ function TBD() {
       </Link>
     </div>
   );
+}
+
+// Function to store user data in Firestore
+async function storeUserData(userId, email) {
+  try {
+    const userRef = doc(db, 'Users', userId); // Use user's ID as the document ID
+
+    // Set user data in Firestore
+    await setDoc(userRef, {
+      email: email,
+      budget: null,  // You can set a default budget
+      createdAt: new Date(),
+    });
+
+    console.log('User data stored successfully!');
+  } catch (e) {
+    console.error('Error storing user data:', e);
+  }
 }
