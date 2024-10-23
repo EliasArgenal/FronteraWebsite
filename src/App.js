@@ -34,9 +34,11 @@ function App() {
   // Handle user login
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
       setIsLoggedIn(true); // Set user as logged in
+      const user = result.user;
       alert('Logged in successfully');
+      console.log('User Info:', user);
     } catch (error) {
       setErrorMessage(error.message);
     }

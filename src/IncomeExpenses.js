@@ -1,3 +1,4 @@
+import { db } from './firebase-config';
 import { deleteDoc, doc } from 'firebase/firestore'; // New import for deleting Firestore documents
 import React, { useState } from 'react';
 import './IncomeExpenses.css'; // Optional: Use this for custom styling
