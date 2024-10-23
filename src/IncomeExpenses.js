@@ -1,3 +1,4 @@
+import { deleteDoc, doc } from 'firebase/firestore'; // New import for deleting Firestore documents
 import React, { useState } from 'react';
 import './IncomeExpenses.css'; // Optional: Use this for custom styling
 
@@ -17,6 +18,10 @@ function IncomeExpenses() {
     setNewEntry({ type: '', amount: '', category: '', comments: '' }); // Reset form after adding
   };
 
+  
+
+
+
   return (
     <div className="income-expenses">
       <h1>Income & Expenses</h1>
@@ -29,6 +34,7 @@ function IncomeExpenses() {
             <th>Amount</th>
             <th>Category</th>
             <th>Comments</th>
+            <th>Remove</th> {/* New column header for the remove button */}
           </tr>
         </thead>
         <tbody>
@@ -38,8 +44,8 @@ function IncomeExpenses() {
               <td>{entry.amount}</td>
               <td>{entry.category}</td>
               <td>{entry.comments}</td>
-            </tr>
-          ))}
+    </tr>
+  ))}
         </tbody>
       </table>
 
