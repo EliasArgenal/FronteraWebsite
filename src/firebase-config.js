@@ -31,4 +31,3 @@ const googleProvider = new GoogleAuthProvider();
 
 export { auth,db, googleProvider }; // Export these services to use them in your app
 
-//export { auth, db };  
