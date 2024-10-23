@@ -1,3 +1,4 @@
+import IncomeExpenses from '.IncomeExpenses'; // Income & Expenses feature
 import React, { useState } from 'react';
 import './App.css';
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'; // to switch between pages
@@ -94,6 +95,7 @@ function App() {
           ) : (
             <Routes>
               <Route path="/" element={<Dashboard handleLogout={handleLogout} />} />
+              <Route path="/income-expenses" element={<IncomeExpenses />} />
               <Route path="/debt" element={<Debt />} />
               <Route path="/income-expenses" element={<IncomeExpenses />} />
               <Route path="/savings-budgeting" element={<SavingsBudgeting />} />
