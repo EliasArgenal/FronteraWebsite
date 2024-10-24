@@ -1,12 +1,12 @@
 import { db } from './firebase-config';
-import { deleteDoc, doc } from 'firebase/firestore'; // New import for deleting Firestore documents
+import { deleteDoc, doc } from 'firebase/firestore'; // Import for deleting Firestore documents
 import React, { useState } from 'react';
 import './IncomeExpenses.css'; // Optional: Use this for custom styling
 
 function IncomeExpenses() {
   const [entries, setEntries] = useState([]); // Initial state is an empty array for the table
   const [newEntry, setNewEntry] = useState({ type: '', amount: '', category: '', comments: '' });
-  const [showForm, setShowForm] = useState(false); // New state to toggle form visibility
+  const [showForm, setShowForm] = useState(false); // State to toggle modal visibility
 
   const handleChange = (e) => {
     setNewEntry({
@@ -18,6 +18,15 @@ function IncomeExpenses() {
   const handleAddEntry = () => {
     setEntries([...entries, newEntry]);
     setNewEntry({ type: '', amount: '', category: '', comments: '' }); // Reset form after adding
+    setShowForm(false); // Close modal after confirming
+  };
+
+  const handleAddNewClick = () => {
+    setShowForm(true);  // Show modal when "Add" is clicked
+  };
+
+  const handleCloseModal = () => {
+    setShowForm(false); // Close the modal without adding the entry
   };
 
   // Remove an entry from Firestore and local state
@@ -34,54 +43,57 @@ function IncomeExpenses() {
     }
   };
 
-
-
   return (
     <div className="income-expenses">
-      {/* Button that shows form when clicked */}
-      {!showForm && (
-        <button className="add-new-btn" onClick={handleAddNewClick}> 
-          Add New
-        </button>
-      )} 
-      {/* Show form if button is clicked */}
+      {/* Button to show form (modal) when clicked */}
+      <button className="add-new-btn" onClick={handleAddNewClick}>
+        Add New
+      </button>
+
+      {/* Modal for adding a new entry */}
       {showForm && (
-        <div className="add-entry-form">
-          <input
-            type="text"
-            name="type"
-            placeholder="Income/Expense"
-            value={newEntry.type}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="amount"
-            placeholder="Amount"
-            value={newEntry.amount}
-            onChange={handleChange}
-          />
-         <input
-            type="text"
-            name="category"
-            placeholder="Category"
-            value={newEntry.category}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="comments"
-            placeholder="Comments"
-            value={newEntry.comments}
-            onChange={handleChange}
-          />
-          <button onClick={handleAddEntry}>Add</button>
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Add New Entry</h2>
+            <input
+              type="text"
+              name="type"
+              placeholder="Income/Expense"
+              value={newEntry.type}
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              name="amount"
+              placeholder="Amount"
+              value={newEntry.amount}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="category"
+              placeholder="Category"
+              value={newEntry.category}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="comments"
+              placeholder="Comments"
+              value={newEntry.comments}
+              onChange={handleChange}
+            />
+            <button className="confirm-btn" onClick={handleAddEntry}>
+              Confirm
+            </button>
+            <button className="cancel-btn" onClick={handleCloseModal}>
+              Cancel
+            </button>
+          </div>
         </div>
-      )} {/* Form now only shows when the button is clicked */}
+      )}
 
-
-
-      {/* Table */}
+      {/* Table displaying entries */}
       <table className="table">
         <thead>
           <tr>
@@ -89,7 +101,7 @@ function IncomeExpenses() {
             <th>Amount</th>
             <th>Category</th>
             <th>Comments</th>
-            <th>Remove</th> {/* New column header for the remove button */}
+            <th>Remove</th> {/* Column header for the remove button */}
           </tr>
         </thead>
         <tbody>
@@ -100,50 +112,17 @@ function IncomeExpenses() {
               <td>{entry.category}</td>
               <td>{entry.comments}</td>
               <td>
-            <button
-    className="remove-btn"
-    onClick={() => handleRemoveEntry(entry.id)}
-  >
-    X
-  </button> {/* Pass the entry's ID for deletion */}
-</td>
-    </tr>
-  ))}
+                <button
+                  className="remove-btn"
+                  onClick={() => handleRemoveEntry(entry.id)}
+                >
+                  X
+                </button> {/* Pass the entry's ID for deletion */}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-
-      {/* Form for adding new entries */}
-      <div className="add-entry-form">
-        <input
-          type="text"
-          name="type"
-          placeholder="Income/Expense"
-          value={newEntry.type}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={newEntry.amount}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={newEntry.category}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="comments"
-          placeholder="Comments"
-          value={newEntry.comments}
-          onChange={handleChange}
-        />
-        <button onClick={handleAddEntry}>Add</button>
-      </div>
     </div>
   );
 }

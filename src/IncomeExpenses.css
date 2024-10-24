@@ -1,48 +1,85 @@
 .income-expenses {
-    text-align: center;
-  }
-
-
-  .add-new-btn {
-    padding: 10px 20px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 20px 0;
+  text-align: center;
 }
 
-  .table {
-    width: 80%;
-    margin: auto;
-    border-collapse: collapse;
-  }
-  
-  .table th, .table td {
-    border: 1px solid black;
-    padding: 10px;
-  }
-  
-  .add-entry-form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .add-entry-form input {
-    margin: 5px;
-    padding: 10px;
-    width: 200px;
-    color: black;
-  }
-  
-  .add-entry-form button {
-    padding: 10px 20px;
-    background-color: green;
-    color: rgb(0, 0, 0);
-    border: none;
-    cursor: pointer;
-  }
-  
+.add-new-btn {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.table {
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+/* Removed the old add-entry-form styles */
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 90%; /* Adjusted input width */
+  color: black; /* Ensure input text is black */
+}
+
+.confirm-btn {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.cancel-btn {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Remove button style for table */
+.remove-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
