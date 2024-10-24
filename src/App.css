@@ -20,65 +20,21 @@
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 500px;
+  width: 100%; /* Adjusted width to extend horizontally */
+  max-width: 1200px; /* Limit the maximum width */
+  margin: 0 auto;
 }
 
-/* Login/Signup Form */
-input[type="email"],
-input[type="password"] {
-  display: block;
-  width: 300px;
-  padding: 10px;
-  margin: 10px auto;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  color: #000;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #21a1f1;
-}
-
-/* Google Sign-In Button */
-.google-signin {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #4285F4; /* Google Blue */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.google-signin:hover {
-  background-color: #357AE8;
-}
-
-/* Error Message */
-.error {
-  color: red;
-  margin-bottom: 10px;
-}
-
+/* Dashboard Styling */
 .dashboard {
   text-align: center;
   padding: 40px;
-  background-color: white; /* White background */
+  background-color: white;
   color: black;
   border-radius: 10px;
-  width: 80%; /* Adjusted width for smaller, centered look */
-  max-width: 800px;
-  margin: 0 auto; /* Center horizontally */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -86,7 +42,8 @@ button:hover {
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  grid-gap: 20px; /* Spacing between buttons */
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+  grid-gap: 30px; /* Spacing between buttons */
   margin-top: 20px;
 }
 
@@ -94,13 +51,13 @@ button:hover {
 .dashboard-btn {
   background-color: green;
   color: white;
-  padding: 15px 20px;
-  font-size: 16px;
+  padding: 30px 40px; /* Increased button size */
+  font-size: 18px; /* Increased font size */
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  width: 220px; /* Set a consistent width for all buttons */
-  min-width: 220px; /* Ensure the buttons can't be smaller than this */
+  width: 100%; /* Make button take full width of its grid cell */
+  height: 100px; /* Set consistent height */
   text-align: center;
 }
 
@@ -124,42 +81,6 @@ button:hover {
   background-color: darkred;
 }
 
-.account-info,
-.transactions,
-.actions {
-  margin-bottom: 20px;
-}
-
-.account-info h3,
-.transactions h3 {
-  color: #61dafb;
-}
-
-.transactions ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.transactions li {
-  background-color: #f1f1f1;
-  padding: 10px;
-  margin-bottom: 5px;
-  border-radius: 4px;
-}
-
-.actions button {
-  padding: 10px;
-  margin: 5px;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.actions button:hover {
-  background-color: #45a049;
-}
-
 /* Logo Container */
 .logo-container {
   display: flex;
@@ -174,7 +95,7 @@ button:hover {
   font-family: 'Roboto', sans-serif;
 }
 
-/* New page styling for the individual pages */
+/* Page Styling */
 .page {
   text-align: center;
   padding: 40px;
