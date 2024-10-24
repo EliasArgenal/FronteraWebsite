@@ -2,12 +2,14 @@ import { db } from './firebase-config';
 import { deleteDoc, doc } from 'firebase/firestore'; // Import for deleting Firestore documents
 import React, { useState } from 'react';
 import './IncomeExpenses.css'; // Optional: Use this for custom styling
+import { useNavigate } from 'react-router-dom';
+
 
 function IncomeExpenses() {
   const [entries, setEntries] = useState([]); // Initial state is an empty array for the table
   const [newEntry, setNewEntry] = useState({ type: '', amount: '', category: '', comments: '' });
   const [showForm, setShowForm] = useState(false); // State to toggle modal visibility
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setNewEntry({
       ...newEntry,
@@ -45,6 +47,12 @@ function IncomeExpenses() {
 
   return (
     <div className="income-expenses">
+
+      {/*Back to dashboard button*/}
+      <button className="back-to-dashboard" onClick={() => navigate('/')}>
+        ← Back to Dashboard
+      </button>
+
       {/* Button to show form (modal) when clicked */}
       <button className="add-new-btn" onClick={handleAddNewClick}>
         Add New

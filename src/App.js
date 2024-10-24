@@ -52,7 +52,7 @@ function App() {
       // alert('Logged in successfully'); <- removed login popups
 
       // Call storeUserData after user login or registration
-      await storeUserData(user.uid, user.email);
+      await storeUserData(user.uid, user.email,user.displayName);
 
     } catch (error) {
       setErrorMessage(error.message);
@@ -193,13 +193,14 @@ function TBD() {
 }
 
 // Function to store user data in Firestore
-async function storeUserData(userId, email) {
+async function storeUserData(userId, email,name) {
   try {
     const userRef = doc(db, 'Users', userId); // Use user's ID as the document ID
 
     // Set user data in Firestore
     await setDoc(userRef, {
       email: email,
+      name : name,
       budget: null,  // You can set a default budget
       createdAt: new Date(),
     });
