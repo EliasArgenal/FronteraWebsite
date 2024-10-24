@@ -99,3 +99,40 @@
 .back-to-dashboard:hover {
   background-color: #218838;  /* Optional: Hover state for the button */
 }
+
+select {
+  color: black; /* Change the text color to black */
+  background-color: white; /* Set the background color */
+  padding: 10px;
+  margin: 10px 0;
+  width: 200px;
+  border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 5px; /* Optional: Add some rounding to the edges */
+}
+
+select option {
+  color: black; /* Make sure options in the dropdown have black text */
+}
+
+/* Styling for the dropdown to match other input fields */
+.input {
+  width: 100%; /* Make it full width */
+  padding: 10px; /* Same padding as other inputs */
+  margin: 10px 0; /* Same margin as other inputs */
+  border: 1px solid #ccc; /* Border like other inputs */
+  border-radius: 5px; /* Rounded corners */
+  background-color: white; /* White background like other inputs */
+  color: black; /* Black text color */
+  font-size: 16px; /* Font size similar to other inputs */
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Optional: Adjust the appearance of the dropdown arrow */
+.input select {
+  appearance: none; /* Remove default arrow for custom styling */
+  -webkit-appearance: none; /* Remove default arrow in webkit browsers */
+  -moz-appearance: none; /* Remove default arrow in Firefox */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="black" stroke-width="2"><polyline points="6 8 10 12 14 8"/></svg>'); /* Custom arrow icon */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}

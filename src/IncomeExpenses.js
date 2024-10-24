@@ -10,12 +10,15 @@ function IncomeExpenses() {
   const [newEntry, setNewEntry] = useState({ type: '', amount: '', category: '', comments: '' });
   const [showForm, setShowForm] = useState(false); // State to toggle modal visibility
   const navigate = useNavigate();
+  const categories = ['Housing', 'Transportation', 'Food', 'Healthcare','Insurance & Pensions', 'Entertainment',
+    'Education', 'Clothing/Personal', 'Savings & Investments', 'Debt Payments', 'Misc'];
   const handleChange = (e) => {
     setNewEntry({
       ...newEntry,
       [e.target.name]: e.target.value,
     });
   };
+
 
   const handleAddEntry = () => {
     setEntries([...entries, newEntry]);
@@ -77,13 +80,15 @@ function IncomeExpenses() {
               value={newEntry.amount}
               onChange={handleChange}
             />
-            <input
-              type="text"
-              name="category"
-              placeholder="Category"
-              value={newEntry.category}
-              onChange={handleChange}
-            />
+            {/* Category dropdown menu */}
+            <select name="category" value={newEntry.category} onChange={handleChange} className="input">
+            <option value="">Category</option> {/* Placeholder option */}
+            {categories.map((category, index) => (
+            <option key={index} value={category}>
+            {category}
+            </option>
+            ))}
+            </select>
             <input
               type="text"
               name="comments"
