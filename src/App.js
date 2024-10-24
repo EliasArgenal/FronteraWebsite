@@ -29,7 +29,7 @@ function App() {
         const user = result.user;
         setIsLoggedIn(true);
         setCurrentUser(user);
-        alert(`Welcome ${user.displayName}!`);
+        // alert(`Welcome ${user.displayName}!`); <- removed login popups
         console.log('User Info:', user); // You can also check other user properties here
        // await storeUserData(user.uidid,user.email);
       
@@ -47,7 +47,7 @@ function App() {
       const user = userCredential.user;
       setCurrentUser(user);
       setIsLoggedIn(true); // Set user as logged in
-      alert('Logged in successfully');
+      // alert('Logged in successfully'); <- removed login popups
 
       // Call storeUserData after user login or registration
       await storeUserData(user.uid, user.email);
@@ -74,7 +74,7 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    alert('Logged out successfully');
+    // alert('Logged out successfully'); <- removed logout popups
   };
  
   
