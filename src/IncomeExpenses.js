@@ -6,6 +6,7 @@ import './IncomeExpenses.css'; // Optional: Use this for custom styling
 function IncomeExpenses() {
   const [entries, setEntries] = useState([]); // Initial state is an empty array for the table
   const [newEntry, setNewEntry] = useState({ type: '', amount: '', category: '', comments: '' });
+  const [showForm, setShowForm] = useState(false); // New state to toggle form visibility
 
   const handleChange = (e) => {
     setNewEntry({
@@ -37,7 +38,48 @@ function IncomeExpenses() {
 
   return (
     <div className="income-expenses">
-      <h1>Income & Expenses</h1>
+      {/* Button that shows form when clicked */}
+      {!showForm && (
+        <button className="add-new-btn" onClick={handleAddNewClick}> 
+          Add New
+        </button>
+      )} 
+      {/* Show form if button is clicked */}
+      {showForm && (
+        <div className="add-entry-form">
+          <input
+            type="text"
+            name="type"
+            placeholder="Income/Expense"
+            value={newEntry.type}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="amount"
+            placeholder="Amount"
+            value={newEntry.amount}
+            onChange={handleChange}
+          />
+         <input
+            type="text"
+            name="category"
+            placeholder="Category"
+            value={newEntry.category}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="comments"
+            placeholder="Comments"
+            value={newEntry.comments}
+            onChange={handleChange}
+          />
+          <button onClick={handleAddEntry}>Add</button>
+        </div>
+      )} {/* Form now only shows when the button is clicked */}
+
+
 
       {/* Table */}
       <table className="table">
