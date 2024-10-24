@@ -14,15 +14,18 @@ function App() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [errorMessage, setErrorMessage] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
 
   
     const handleGoogleSignIn = async () => {
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
+        setIsLoggedIn(true);
+        setCurrentUser(user);
         alert(`Welcome ${user.displayName}!`);
         console.log('User Info:', user); // You can also check other user properties here
-        await storeUserData(user.uid,user.email);
+       // await storeUserData(user.uidid,user.email);
       
       } catch (error) {
         console.error('Error during Google sign-in:', error);
@@ -34,9 +37,15 @@ function App() {
   // Handle user login
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredntial = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredntial.user;
+      setCurrentUser(user);
       setIsLoggedIn(true); // Set user as logged in
       alert('Logged in successfully');
+
+      // Call storeUserData after user login or registration
+      await storeUserData(user.uid, user.email);
+
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -45,7 +54,9 @@ function App() {
   // Handle user registration (sign-up)
   const handleSignUp = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCred.user;
+      setCurrentUser(user);
       setIsLoggedIn(true); // Automatically log in after sign-up
       alert('Account created successfully');
 
@@ -198,5 +209,19 @@ async function storeUserData(userId, email) {
     console.log('User data stored successfully!');
   } catch (e) {
     console.error('Error storing user data:', e);
+  }
+}
+
+// Function to update the user's budget
+async function updateUserBudget(userId, newBudget) {
+  try {
+    const userRef = doc(db, 'Users', userId);  // Reference to the user document
+
+    // Update the budget field in Firestore
+    await updateDoc(userRef, { budget: newBudget, });
+
+    console.log('Budget updated successfully!');
+  } catch (e) {
+    console.error('Error updating budget:', e);
   }
 }
