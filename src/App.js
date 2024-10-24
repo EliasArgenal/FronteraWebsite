@@ -4,9 +4,12 @@ import './App.css';
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'; // to switch between pages
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
 import { auth,googleProvider } from './firebase-config'; // Firebase config
-import {doc,setDoc, updateDoc} from "firebase/firestore";
+import {doc,setDoc, updateDoc , updateDoc} from "firebase/firestore";
 import {db} from "./firebase-config"; // import firestore instance
 import logo from './SmartWallet.png'; // You can use a banking-related logo instead of React's
+import { useEffect } from 'react';  // Add this to the top of your imports in App.js
+
+
 
 
 
@@ -17,6 +20,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [errorMessage, setErrorMessage] = useState('');
  //const [currentUser, setCurrentUser] = useState(null);
+
 
   //const userId = 'userID123';  // Assume this comes from user auth or context
 
@@ -44,7 +48,7 @@ function App() {
       const user = userCredential.user;
       //setCurrentUser(user);
       setIsLoggedIn(true); // Set user as logged in
-      alert('Logged in successfully');
+      // alert('Logged in successfully'); <- removed login popups
 
       // Call storeUserData after user login or registration
       await storeUserData(user.uid, user.email);
@@ -71,9 +75,10 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    alert('Logged out successfully');
+    // alert('Logged out successfully'); <- removed logout popups
   };
  
+  
 
   return (
     <Router>

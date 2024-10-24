@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";   // For Firebase Authentication
 import { getFirestore } from "firebase/firestore";  // For Firestore (database)
+import { setPersistence, browserLocalPersistence } from "firebase/auth";  // Add this to your imports
 // Optionally, you can import Analytics if you plan to use it
 // import { getAnalytics } from "firebase/analytics";
 
@@ -30,4 +31,5 @@ const db = getFirestore(app);  // This is for Firestore database
 const googleProvider = new GoogleAuthProvider();
 
 export { auth,db, googleProvider }; // Export these services to use them in your app
+
 
