@@ -39,11 +39,10 @@ function App() {
   // Handle user login
   const handleLogin = async () => {
     try {
-      const userCredntial = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredntial.user;
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
       setCurrentUser(user);
       setIsLoggedIn(true); // Set user as logged in
-      const user = result.user;
       alert('Logged in successfully');
 
       // Call storeUserData after user login or registration
@@ -62,7 +61,6 @@ function App() {
       setCurrentUser(user);
       setIsLoggedIn(true); // Automatically log in after sign-up
       alert('Account created successfully');
-      const user = { name: "John", age: 30 }; // Added this to fix "user" error @belencast06
 
       await storeUserData(user.uid,user.email);
     } catch (error) {
