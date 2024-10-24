@@ -8,6 +8,8 @@ import {doc,setDoc} from "firebase/firestore";
 import {db} from "./firebase-config"; // import firestore instance
 import logo from './SmartWallet.png'; // You can use a banking-related logo instead of React's
 
+
+
 function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +43,7 @@ function App() {
       const user = userCredntial.user;
       setCurrentUser(user);
       setIsLoggedIn(true); // Set user as logged in
+      const user = result.user;
       alert('Logged in successfully');
 
       // Call storeUserData after user login or registration
@@ -59,6 +62,7 @@ function App() {
       setCurrentUser(user);
       setIsLoggedIn(true); // Automatically log in after sign-up
       alert('Account created successfully');
+      const user = { name: "John", age: 30 }; // Added this to fix "user" error @belencast06
 
       await storeUserData(user.uid,user.email);
     } catch (error) {
@@ -112,7 +116,6 @@ function App() {
               <Route path="/" element={<Dashboard handleLogout={handleLogout} />} />
               <Route path="/income-expenses" element={<IncomeExpenses />} />
               <Route path="/debt" element={<Debt />} />
-              <Route path="/income-expenses" element={<IncomeExpenses />} />
               <Route path="/savings-budgeting" element={<SavingsBudgeting />} />
               <Route path="/tbd" element={<TBD />} />
             </Routes>
@@ -154,17 +157,6 @@ function Debt() {
   return (
     <div className="page">
       <h1>Debt</h1>
-      <Link to="/">
-        <button className="home-btn">Home</button>
-      </Link>
-    </div>
-  );
-}
-
-function IncomenExpenses() {
-  return (
-    <div className="page">
-      <h1>Income & Expenses</h1>
       <Link to="/">
         <button className="home-btn">Home</button>
       </Link>
