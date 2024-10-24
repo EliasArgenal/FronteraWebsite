@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/FronteraWebsite/static/css/main.98fed47b.css",
-    "main.js": "/FronteraWebsite/static/js/main.6a17a709.js",
+    "main.css": "/FronteraWebsite/static/css/main.9434a2a3.css",
+    "main.js": "/FronteraWebsite/static/js/main.b67a3a02.js",
     "static/js/453.57423a27.chunk.js": "/FronteraWebsite/static/js/453.57423a27.chunk.js",
     "static/media/SmartWallet.png": "/FronteraWebsite/static/media/SmartWallet.e9953a189c1a1d2a01a9.png",
     "index.html": "/FronteraWebsite/index.html",
-    "main.98fed47b.css.map": "/FronteraWebsite/static/css/main.98fed47b.css.map",
-    "main.6a17a709.js.map": "/FronteraWebsite/static/js/main.6a17a709.js.map",
+    "main.9434a2a3.css.map": "/FronteraWebsite/static/css/main.9434a2a3.css.map",
+    "main.b67a3a02.js.map": "/FronteraWebsite/static/js/main.b67a3a02.js.map",
     "453.57423a27.chunk.js.map": "/FronteraWebsite/static/js/453.57423a27.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.98fed47b.css",
-    "static/js/main.6a17a709.js"
+    "static/css/main.9434a2a3.css",
+    "static/js/main.b67a3a02.js"
   ]
 }
