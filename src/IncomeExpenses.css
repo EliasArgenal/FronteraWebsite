@@ -20,12 +20,13 @@
   .add-entry-form input {
     margin: 5px;
     padding: 10px;
+    color: black;
   }
   
   .add-entry-form button {
     padding: 10px 20px;
     background-color: green;
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
   }
