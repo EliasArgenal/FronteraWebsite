@@ -75,3 +75,19 @@
   .logout-btn:hover {
     background-color: #ff3333;
   }
+
+  .back-to-dashboard {
+    position: fixed;
+    bottom: 20px;  /* Distance from the bottom */
+    left: 20px;    /* Distance from the left */
+    padding: 10px 20px;
+    background-color: #28a745;  /* Optional: Button background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .back-to-dashboard:hover {
+    background-color: #218838;  /* Optional: Hover state for the button */
+  }
