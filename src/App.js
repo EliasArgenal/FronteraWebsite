@@ -4,7 +4,7 @@ import './App.css';
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'; // to switch between pages
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
 import { auth,googleProvider } from './firebase-config'; // Firebase config
-import {doc,setDoc} from "firebase/firestore";
+import {doc,setDoc, updateDoc} from "firebase/firestore";
 import {db} from "./firebase-config"; // import firestore instance
 import logo from './SmartWallet.png'; // You can use a banking-related logo instead of React's
 
@@ -16,18 +16,19 @@ function App() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [errorMessage, setErrorMessage] = useState('');
-  const [currentUser, setCurrentUser] = useState(null);
+ //const [currentUser, setCurrentUser] = useState(null);
 
-  
+  //const userId = 'userID123';  // Assume this comes from user auth or context
+
     const handleGoogleSignIn = async () => {
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
         setIsLoggedIn(true);
-        setCurrentUser(user);
+        //setCurrentUser(user);
         alert(`Welcome ${user.displayName}!`);
         console.log('User Info:', user); // You can also check other user properties here
-       // await storeUserData(user.uidid,user.email);
+        await storeUserData(user.uidid,user.email);
       
       } catch (error) {
         console.error('Error during Google sign-in:', error);
@@ -41,7 +42,7 @@ function App() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      setCurrentUser(user);
+      //setCurrentUser(user);
       setIsLoggedIn(true); // Set user as logged in
       alert('Logged in successfully');
 
@@ -58,10 +59,10 @@ function App() {
     try {
       const userCred = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCred.user;
-      setCurrentUser(user);
+      //setCurrentUser(user);
       setIsLoggedIn(true); // Automatically log in after sign-up
       alert('Account created successfully');
-
+      console.log('User UID',user.uid);
       await storeUserData(user.uid,user.email);
     } catch (error) {
       setErrorMessage(error.message);
