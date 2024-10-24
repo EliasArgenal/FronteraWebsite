@@ -32,11 +32,4 @@ const googleProvider = new GoogleAuthProvider();
 
 export { auth,db, googleProvider }; // Export these services to use them in your app
 
-// Add this after initializing `auth`
-setPersistence(auth, browserLocalPersistence)
-  .then(() => {
-    console.log("Persistence set to local");
-  })
-  .catch((error) => {
-    console.error("Error setting persistence:", error);
-  });
+
