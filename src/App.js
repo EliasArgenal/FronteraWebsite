@@ -1,3 +1,4 @@
+import Statements from './Statements'; // Import the Statements feature
 import IncomeExpenses from './IncomeExpenses'; // Income & Expenses feature
 import React, { useState } from 'react';
 import './App.css';
@@ -117,6 +118,7 @@ function App() {
             </div>
           ) : (
             <Routes>
+              <Route path="/statements" element={<Statements />} />
               <Route path="/" element={<Dashboard handleLogout={handleLogout} />} />
               <Route path="/income-expenses" element={<IncomeExpenses />} />
               <Route path="/debt" element={<Debt />} />
@@ -147,8 +149,8 @@ function Dashboard({ handleLogout }) {
         <Link to="/savings-budgeting">
           <button className="dashboard-btn">Savings & Budgeting</button>
         </Link>
-        <Link to="/tbd">
-          <button className="dashboard-btn">TBD</button>
+        <Link to="/statements">
+          <button className="dashboard-btn">Statements</button>
         </Link>
       </div>
       <button className="logout-btn" onClick={handleLogout}>Log Out</button>
