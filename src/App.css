@@ -21,19 +21,19 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%; /* Adjusted width to extend horizontally */
-  max-width: 1200px; /* Limit the maximum width */
+  max-width: 500px; /* Limit the maximum width */
   margin: 0 auto;
 }
 
 /* Dashboard Styling */
 .dashboard {
   text-align: center;
-  padding: 40px;
+  padding: 20px;
   background-color: white;
   color: black;
   border-radius: 10px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 500px;
   margin: 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -114,4 +114,10 @@
 
 .home-btn:hover {
   background-color: darkblue;
+}
+
+/* This changes the color of the text to black when typing your login */
+input[type="email"],
+input[type="password"] {
+  color: rgb(0, 0, 0);
 }
