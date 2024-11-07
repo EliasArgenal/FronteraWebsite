@@ -89,11 +89,12 @@ function App() {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">SmartWallet</h1>
           </div>
-
+  
           {!isLoggedIn ? (
-            <div>
+            <div className="login-container">
               <h2>{isRegistering ? 'Sign Up' : 'Login'}</h2>
               {errorMessage && <p className="error">{errorMessage}</p>}
+  
               <input
                 type="email"
                 placeholder="Email"
@@ -106,12 +107,16 @@ function App() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button onClick={isRegistering ? handleSignUp : handleLogin}>
-                {isRegistering ? 'Sign Up' : 'Login'}
-              </button>
-              <button onClick={() => setIsRegistering(!isRegistering)}>
-                {isRegistering ? 'Already have an account? Log in' : 'Need an account? Sign up'}
-              </button>
+  
+              <div className="button-group">
+                <button onClick={isRegistering ? handleSignUp : handleLogin}>
+                  {isRegistering ? 'Sign Up' : 'Login'}
+                </button>
+                <button onClick={() => setIsRegistering(!isRegistering)}>
+                  {isRegistering ? 'Already have an account? Log in' : 'Need an account? Sign up'}
+                </button>
+              </div>
+  
               <button onClick={handleGoogleSignIn} className="google-signin">
                 Sign in with Google
               </button>
@@ -130,7 +135,7 @@ function App() {
       </div>
     </Router>
   );
-}
+}  
 
 export default App;
 
