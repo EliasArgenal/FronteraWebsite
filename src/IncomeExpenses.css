@@ -2,14 +2,47 @@
   text-align: center;
 }
 
-.add-new-btn {
+.add-new-btn, .confirm-btn, .cancel-btn, .back-to-dashboard {
   padding: 10px 20px;
-  background-color: green;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.add-new-btn, .confirm-btn {
+  background-color: green;
   font-size: 18px;
   margin: 20px 0;
+}
+
+.cancel-btn {
+  background-color: red;
+}
+
+.back-to-dashboard {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #28a745;
+}
+
+.back-to-dashboard:hover {
+  background-color: #218838;
+}
+
+.remove-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background-color: #ff1a1a;
 }
 
 .table {
@@ -23,8 +56,6 @@
   padding: 10px;
 }
 
-/* Removed the old add-entry-form styles */
-
 /* Modal styles */
 .modal {
   position: fixed;
@@ -32,7 +63,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,89 +81,40 @@
   margin-bottom: 20px;
 }
 
-.modal-content input {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 90%; /* Adjusted input width */
-  color: black; /* Ensure input text is black */
-}
-
-.confirm-btn {
-  padding: 10px 20px;
-  background-color: green;
-  color: white;
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.cancel-btn {
-  padding: 10px 20px;
-  background-color: red;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-/* Remove button style for table */
-.remove-btn {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.back-to-dashboard {
-  position: fixed;
-  bottom: 20px;  /* Distance from the bottom */
-  left: 20px;    /* Distance from the left */
-  padding: 10px 20px;
-  background-color: #28a745;  /* Optional: Button background color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.back-to-dashboard:hover {
-  background-color: #218838;  /* Optional: Hover state for the button */
-}
-
-select {
-  color: black; /* Change the text color to black */
-  background-color: white; /* Set the background color */
+/* Input styling for all input fields and dropdowns */
+.input, .modal-content input[type="number"], .modal-content input[type="text"], select {
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
-  width: 200px;
-  border: 1px solid #ccc; /* Optional: Add a border */
-  border-radius: 5px; /* Optional: Add some rounding to the edges */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-select option {
-  color: black; /* Make sure options in the dropdown have black text */
+/* Remove increment/decrement controls on number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
-/* Styling for the dropdown to match other input fields */
-.input {
-  width: 100%; /* Make it full width */
-  padding: 10px; /* Same padding as other inputs */
-  margin: 10px 0; /* Same margin as other inputs */
-  border: 1px solid #ccc; /* Border like other inputs */
-  border-radius: 5px; /* Rounded corners */
-  background-color: white; /* White background like other inputs */
-  color: black; /* Black text color */
-  font-size: 16px; /* Font size similar to other inputs */
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
-}
-
-/* Optional: Adjust the appearance of the dropdown arrow */
-.input select {
-  appearance: none; /* Remove default arrow for custom styling */
-  -webkit-appearance: none; /* Remove default arrow in webkit browsers */
-  -moz-appearance: none; /* Remove default arrow in Firefox */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="black" stroke-width="2"><polyline points="6 8 10 12 14 8"/></svg>'); /* Custom arrow icon */
+/* Custom arrow for select dropdowns */
+select.input {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="black" stroke-width="2"><polyline points="6 8 10 12 14 8"/></svg>');
   background-repeat: no-repeat;
   background-position: right 10px center;
+}
+
+/* Hover and focus states for all inputs */
+.input:hover, .modal-content input[type="number"]:hover, .modal-content input[type="text"]:hover,
+.input:focus, .modal-content input[type="number"]:focus, .modal-content input[type="text"]:focus {
+  border-color: #888;
+  outline: none;
 }

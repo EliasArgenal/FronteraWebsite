@@ -12,6 +12,7 @@ function IncomeExpenses() {
   const navigate = useNavigate();
   const categories = ['Housing', 'Transportation', 'Food', 'Healthcare','Insurance & Pensions', 'Entertainment',
     'Education', 'Clothing/Personal', 'Savings & Investments', 'Debt Payments', 'Misc'];
+  const incomeorexpense = ['Income', 'Expense'];
   const handleChange = (e) => {
     setNewEntry({
       ...newEntry,
@@ -31,22 +32,28 @@ function IncomeExpenses() {
   };
 
   const handleCloseModal = () => {
-    setShowForm(false); // Close the modal without adding the entry
+    setNewEntry({ type: '', amount: '', category: '', comments: '' }); // Reset form values
+    setShowForm(false); // Close the modal
   };
 
   // Remove an entry from Firestore and local state
   const handleRemoveEntry = async (id) => {
     try {
+      console.log("Attempting to delete entry with id:", id); // Log the entry ID being deleted
+  
       // Remove from Firestore
       const docRef = doc(db, 'entries', id);
       await deleteDoc(docRef);
+      console.log("Entry successfully deleted from Firestore.");
   
       // Remove from local state
-      setEntries(entries.filter((entry) => entry.id !== id));
+      setEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== id));
+      console.log("Entry removed from local state.");
     } catch (error) {
-      console.error("Error deleting document: ", error);
+      console.error("Error deleting document:", error);
     }
   };
+  
 
   return (
     <div className="income-expenses">
@@ -66,13 +73,15 @@ function IncomeExpenses() {
         <div className="modal">
           <div className="modal-content">
             <h2>Add New Entry</h2>
-            <input
-              type="text"
-              name="type"
-              placeholder="Income/Expense"
-              value={newEntry.type}
-              onChange={handleChange}
-            />
+            {/* Income / Expenses dropdown menu */}
+            <select name="type" value={newEntry.type} onChange={handleChange} className="input">
+            <option value="" disabled selected>Income / Expense</option> {/* Placeholder option */}
+            {incomeorexpense.map((incomeorexpense, index) => (
+            <option key={index} value={incomeorexpense}>
+            {incomeorexpense}
+            </option>
+            ))}
+            </select>
             <input
               type="number"
               name="amount"
@@ -82,7 +91,7 @@ function IncomeExpenses() {
             />
             {/* Category dropdown menu */}
             <select name="category" value={newEntry.category} onChange={handleChange} className="input">
-            <option value="">Category</option> {/* Placeholder option */}
+            <option value="" disabled selected>Category</option> {/* Placeholder option */}
             {categories.map((category, index) => (
             <option key={index} value={category}>
             {category}
@@ -108,34 +117,35 @@ function IncomeExpenses() {
 
       {/* Table displaying entries */}
       <table className="table">
-        <thead>
-          <tr>
+      <thead>
+        <tr>
             <th>Income/Expense</th>
             <th>Amount</th>
             <th>Category</th>
             <th>Comments</th>
             <th>Remove</th> {/* Column header for the remove button */}
-          </tr>
-        </thead>
-        <tbody>
-          {entries.map((entry, index) => (
-            <tr key={index}>
-              <td>{entry.type}</td>
-              <td>{entry.amount}</td>
-              <td>{entry.category}</td>
-              <td>{entry.comments}</td>
-              <td>
-                <button
-                  className="remove-btn"
-                  onClick={() => handleRemoveEntry(entry.id)}
-                >
-                  X
-                </button> {/* Pass the entry's ID for deletion */}
-              </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+  </thead>
+  <tbody>
+    {entries.map((entry, index) => (
+      <tr key={index}>
+        <td>{entry.type}</td>
+        <td>{entry.amount}</td>
+        <td>{entry.category}</td>
+        <td>{entry.comments}</td>
+        <td>
+          <button
+            className="remove-btn"
+            onClick={() => handleRemoveEntry(entry.id)}
+          >
+            X
+          </button> {/* Button to remove the row */}
+        </td>
+       </tr>
+       ))}
+  </tbody>
+</table>
+
     </div>
   );
 }
