@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/* Button styles (Add New, Confirm, Cancel, Back to Dashboard) */
 .add-new-btn, .confirm-btn, .cancel-btn, .back-to-dashboard {
   padding: 10px 20px;
   color: white;
@@ -31,6 +32,7 @@
   background-color: #218838;
 }
 
+/* Remove button styling */
 .remove-btn {
   background-color: #ff4d4d;
   color: white;
@@ -45,6 +47,7 @@
   background-color: #ff1a1a;
 }
 
+/* Table styling */
 .table {
   width: 80%;
   margin: auto;
@@ -88,20 +91,29 @@
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: white;
-  color: black;
+  background-color: white !important;
+  color: black !important; /* Ensures text is black */
   font-size: 16px;
   box-sizing: border-box;
 }
 
-/* Remove increment/decrement controls on number inputs */
+/* Remove increment and decrement controls in WebKit browsers (Chrome, Safari) */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* Remove increment and decrement controls in Firefox */
 input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
+}
+
+
+/* Specific override for Amount input (if the above fails) */
+.modal-content input[type="number"] {
+  color: black !important;
+  background-color: white !important;
 }
 
 /* Custom arrow for select dropdowns */
@@ -117,4 +129,18 @@ select.input {
 .input:focus, .modal-content input[type="number"]:focus, .modal-content input[type="text"]:focus {
   border-color: #888;
   outline: none;
+}
+
+/* Style for placeholder text in inputs */
+.input::placeholder, 
+.modal-content input[type="number"]::placeholder, 
+.modal-content input[type="text"]::placeholder {
+  color: black;
+  opacity: 1; /* Ensures full opacity for the placeholder */
+}
+
+/* Make placeholder text disappear when input is focused */
+.modal-content input[type="number"]:focus::placeholder, 
+.modal-content input[type="text"]:focus::placeholder {
+  color: transparent; /* Hides the placeholder text on focus */
 }

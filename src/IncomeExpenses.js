@@ -75,7 +75,7 @@ function IncomeExpenses() {
             <h2>Add New Entry</h2>
             {/* Income / Expenses dropdown menu */}
             <select name="type" value={newEntry.type} onChange={handleChange} className="input">
-            <option value="" disabled selected>Income / Expense</option> {/* Placeholder option */}
+            <option value="" disabled>Income / Expense</option>
             {incomeorexpense.map((incomeorexpense, index) => (
             <option key={index} value={incomeorexpense}>
             {incomeorexpense}
@@ -88,10 +88,11 @@ function IncomeExpenses() {
               placeholder="Amount"
               value={newEntry.amount}
               onChange={handleChange}
+              style={{ color: 'black', backgroundColor: 'white' }} // Inline style to enforce black text
             />
             {/* Category dropdown menu */}
             <select name="category" value={newEntry.category} onChange={handleChange} className="input">
-            <option value="" disabled selected>Category</option> {/* Placeholder option */}
+            <option value="" disabled>Category</option>
             {categories.map((category, index) => (
             <option key={index} value={category}>
             {category}
