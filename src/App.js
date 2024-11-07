@@ -1,3 +1,5 @@
+import Debt from './Debt';
+import SavingsBudgeting from './SavingsBudgeting';
 import Statements from './Statements'; // Import the Statements feature
 import IncomeExpenses from './IncomeExpenses'; // Income & Expenses feature
 import React, { useState } from 'react';
@@ -163,28 +165,7 @@ function Dashboard({ handleLogout }) {
   );
 }
 
-// Individual Page Components
-function Debt() {
-  return (
-    <div className="page">
-      <h1>Debt</h1>
-      <Link to="/">
-        <button className="home-btn">Home</button>
-      </Link>
-    </div>
-  );
-}
-
-function SavingsBudgeting() {
-  return (
-    <div className="page">
-      <h1>Savings & Budgeting</h1>
-      <Link to="/">
-        <button className="home-btn">Home</button>
-      </Link>
-    </div>
-  );
-}
+// Individual Page Components, temporary while they dont have their own files
 
 function TBD() {
   return (

@@ -1,0 +1,21 @@
+.debt-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .back-to-dashboard {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .back-to-dashboard:hover {
+    background-color: #357ae8;
+  }
+  
