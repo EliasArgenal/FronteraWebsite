@@ -1,18 +1,32 @@
 import { db } from './firebase-config';
-import { deleteDoc, doc } from 'firebase/firestore'; // Import for deleting Firestore documents
-import React, { useState } from 'react';
-import './IncomeExpenses.css'; // Optional: Use this for custom styling
+import { addDoc, collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore'; // Include Firestore methods
+import React, { useState, useEffect } from 'react';
+import './IncomeExpenses.css';
 import { useNavigate } from 'react-router-dom';
 
-
 function IncomeExpenses() {
-  const [entries, setEntries] = useState([]); // Initial state is an empty array for the table
+  const [entries, setEntries] = useState([]); // State for table entries
   const [newEntry, setNewEntry] = useState({ type: '', amount: '', category: '', comments: '' });
-  const [showForm, setShowForm] = useState(false); // State to toggle modal visibility
+  const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
-  const categories = ['Housing', 'Transportation', 'Food', 'Healthcare','Insurance & Pensions', 'Entertainment',
+
+  const categories = ['Housing', 'Transportation', 'Food', 'Healthcare', 'Insurance & Pensions', 'Entertainment',
     'Education', 'Clothing/Personal', 'Savings & Investments', 'Debt Payments', 'Misc'];
   const incomeorexpense = ['Income', 'Expense'];
+
+  // Fetch data from Firestore
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'incomeExpenses'), (snapshot) => {
+      const fetchedEntries = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setEntries(fetchedEntries);
+    });
+
+    return () => unsubscribe(); // Cleanup listener on unmount
+  }, []);
+
   const handleChange = (e) => {
     setNewEntry({
       ...newEntry,
@@ -20,67 +34,66 @@ function IncomeExpenses() {
     });
   };
 
+  const handleAddEntry = async () => {
+    try {
+      // Add entry to Firestore
+      const docRef = await addDoc(collection(db, 'incomeExpenses'), {
+        type: newEntry.type,
+        amount: Number(newEntry.amount), // Ensure numeric data type
+        category: newEntry.category,
+        comments: newEntry.comments,
+        timestamp: new Date(), // Add timestamp
+      });
 
-  const handleAddEntry = () => {
-    setEntries([...entries, newEntry]);
-    setNewEntry({ type: '', amount: '', category: '', comments: '' }); // Reset form after adding
-    setShowForm(false); // Close modal after confirming
+      console.log('Document written with ID:', docRef.id);
+
+      // Reset form and close modal
+      setNewEntry({ type: '', amount: '', category: '', comments: '' });
+      setShowForm(false);
+    } catch (error) {
+      console.error('Error adding document:', error);
+    }
   };
 
   const handleAddNewClick = () => {
-    setShowForm(true);  // Show modal when "Add" is clicked
+    setShowForm(true);
   };
 
   const handleCloseModal = () => {
-    setNewEntry({ type: '', amount: '', category: '', comments: '' }); // Reset form values
-    setShowForm(false); // Close the modal
+    setNewEntry({ type: '', amount: '', category: '', comments: '' });
+    setShowForm(false);
   };
 
-  // Remove an entry from Firestore and local state
   const handleRemoveEntry = async (id) => {
     try {
-      console.log("Attempting to delete entry with id:", id); // Log the entry ID being deleted
-  
-      // Remove from Firestore
-      const docRef = doc(db, 'entries', id);
-      await deleteDoc(docRef);
-      console.log("Entry successfully deleted from Firestore.");
-  
-      // Remove from local state
-      setEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== id));
-      console.log("Entry removed from local state.");
+      await deleteDoc(doc(db, 'incomeExpenses', id));
+      console.log(`Document with ID ${id} deleted.`);
     } catch (error) {
-      console.error("Error deleting document:", error);
+      console.error('Error deleting document:', error);
     }
   };
-  
 
   return (
     <div className="income-expenses">
-
-      {/*Back to dashboard button*/}
       <button className="back-to-dashboard" onClick={() => navigate('/')}>
         ← Back to Dashboard
       </button>
 
-      {/* Button to show form (modal) when clicked */}
       <button className="add-new-btn" onClick={handleAddNewClick}>
         Add New
       </button>
 
-      {/* Modal for adding a new entry */}
       {showForm && (
         <div className="modal">
           <div className="modal-content">
             <h2>Add New Entry</h2>
-            {/* Income / Expenses dropdown menu */}
             <select name="type" value={newEntry.type} onChange={handleChange} className="input">
-            <option value="" disabled>Income / Expense</option>
-            {incomeorexpense.map((incomeorexpense, index) => (
-            <option key={index} value={incomeorexpense}>
-            {incomeorexpense}
-            </option>
-            ))}
+              <option value="" disabled>Income / Expense</option>
+              {incomeorexpense.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
             </select>
             <input
               type="number"
@@ -88,16 +101,15 @@ function IncomeExpenses() {
               placeholder="Amount"
               value={newEntry.amount}
               onChange={handleChange}
-              style={{ color: 'black', backgroundColor: 'white' }} // Inline style to enforce black text
+              style={{ color: 'black', backgroundColor: 'white' }}
             />
-            {/* Category dropdown menu */}
             <select name="category" value={newEntry.category} onChange={handleChange} className="input">
-            <option value="" disabled>Category</option>
-            {categories.map((category, index) => (
-            <option key={index} value={category}>
-            {category}
-            </option>
-            ))}
+              <option value="" disabled>Category</option>
+              {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
             <input
               type="text"
@@ -116,37 +128,32 @@ function IncomeExpenses() {
         </div>
       )}
 
-      {/* Table displaying entries */}
       <table className="table">
-      <thead>
-        <tr>
+        <thead>
+          <tr>
             <th>Income/Expense</th>
             <th>Amount</th>
             <th>Category</th>
             <th>Comments</th>
-            <th>Remove</th> {/* Column header for the remove button */}
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries.map((entry) => (
+            <tr key={entry.id}>
+              <td>{entry.type}</td>
+              <td>{entry.amount}</td>
+              <td>{entry.category}</td>
+              <td>{entry.comments}</td>
+              <td>
+                <button className="remove-btn" onClick={() => handleRemoveEntry(entry.id)}>
+                  X
+                </button>
+              </td>
             </tr>
-  </thead>
-  <tbody>
-    {entries.map((entry, index) => (
-      <tr key={index}>
-        <td>{entry.type}</td>
-        <td>{entry.amount}</td>
-        <td>{entry.category}</td>
-        <td>{entry.comments}</td>
-        <td>
-          <button
-            className="remove-btn"
-            onClick={() => handleRemoveEntry(entry.id)}
-          >
-            X
-          </button> {/* Button to remove the row */}
-        </td>
-       </tr>
-       ))}
-  </tbody>
-</table>
-
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
