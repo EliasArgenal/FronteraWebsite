@@ -1,8 +1,11 @@
 import { auth, db } from './firebase-config';
-import { setDoc, addDoc, collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore'; // Include Firestore methods
+import { setDoc, addDoc, collection, deleteDoc, doc, onSnapshot , Timestamp} from 'firebase/firestore'; // Include Firestore methods
 import React, { useState, useEffect } from 'react';
 import './IncomeExpenses.css';
 import { useNavigate } from 'react-router-dom';
+//import {Timestamp} from 'firebase/firestore';
+
+
 
 function IncomeExpenses() {
   const [entries, setEntries] = useState([]); // State for table entries
@@ -15,9 +18,47 @@ function IncomeExpenses() {
   const incomeorexpense = ['Income', 'Expense'];
 
 
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (!user) return;
+  
+    // References for Income and Expenses sub-collections
+    const incomeRef = collection(db, 'Users', user.uid, 'incomeExpenses', 'Income');
+    const expensesRef = collection(db, 'Users', user.uid, 'incomeExpenses', 'Expenses');
+  
+    // Reset entries before fetching
+    setEntries([]);
+  
+    // Subscribe to both Income and Expenses sub-collections
+    const unsubscribeIncome = onSnapshot(incomeRef, (snapshot) => {
+      const incomeEntries = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        type: 'Income', // Add type to distinguish entries
+        ...doc.data(),
+      }));
+  
+      setEntries((prevEntries) => [...prevEntries, ...incomeEntries]);
+    });
+  
+    const unsubscribeExpenses = onSnapshot(expensesRef, (snapshot) => {
+      const expenseEntries = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        type: 'Expense', // Add type to distinguish entries
+        ...doc.data(),
+      }));
+  
+      setEntries((prevEntries) => [...prevEntries, ...expenseEntries]);
+    });
+  
+    // Cleanup both listeners on unmount
+    return () => {
+      unsubscribeIncome();
+      unsubscribeExpenses();
+    };
+  }, []);
+  
 
-
-
+/*
   // Fetch data from Firestore
   useEffect(() => {
     const user = auth.currentUser;
@@ -34,7 +75,7 @@ function IncomeExpenses() {
 
     return () => unsubscribe(); // Cleanup listener on unmount
   }, []);
-
+*/
 
 
 
@@ -73,7 +114,7 @@ function IncomeExpenses() {
         amount: Number(newEntry.amount), // Ensure numeric type
         category: newEntry.category,
         comments: newEntry.comments || '',
-        timestamp: new Date(),
+        timestamp: Timestamp.fromDate(new Date()),
       });
 
       console.log(`${newEntry.type} transaction added successfully!`);
@@ -112,6 +153,10 @@ function IncomeExpenses() {
       // Delete the document from the corresponding subcollection
       await deleteDoc(doc(db, 'Users', user.uid, 'incomeExpenses', subCollectionName, id));
       console.log(`Document with ID ${id} deleted from ${subCollectionName}.`);
+      
+    // Remove the deleted entry from the state
+    setEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== id));
+    
     } catch (error) {
       console.error('Error deleting document:', error);
     }
@@ -190,7 +235,7 @@ function IncomeExpenses() {
               <td>{entry.category}</td>
               <td>{entry.comments}</td>
               <td>
-                <button className="remove-btn" onClick={() => handleRemoveEntry(entry.id)}>
+                <button className="remove-btn" onClick={() => handleRemoveEntry(entry.id,entry.type)}>
                   X
                 </button>
               </td>
