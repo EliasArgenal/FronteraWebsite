@@ -1,5 +1,5 @@
-import { db } from './firebase-config';
-import { addDoc, collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore'; // Include Firestore methods
+import { auth, db } from './firebase-config';
+import { setDoc, addDoc, collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore'; // Include Firestore methods
 import React, { useState, useEffect } from 'react';
 import './IncomeExpenses.css';
 import { useNavigate } from 'react-router-dom';
@@ -14,9 +14,17 @@ function IncomeExpenses() {
     'Education', 'Clothing/Personal', 'Savings & Investments', 'Debt Payments', 'Misc'];
   const incomeorexpense = ['Income', 'Expense'];
 
+
+
+
+
   // Fetch data from Firestore
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'incomeExpenses'), (snapshot) => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const incomeExpensesRef = collection(db, 'Users', user.uid, 'incomeExpenses');
+    const unsubscribe = onSnapshot(incomeExpensesRef, (snapshot) => {
       const fetchedEntries = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -27,6 +35,10 @@ function IncomeExpenses() {
     return () => unsubscribe(); // Cleanup listener on unmount
   }, []);
 
+
+
+
+
   const handleChange = (e) => {
     setNewEntry({
       ...newEntry,
@@ -34,26 +46,47 @@ function IncomeExpenses() {
     });
   };
 
+
+
+
   const handleAddEntry = async () => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert('User not logged in. Please log in to add entries.');
+      return;
+    }
+
     try {
-      // Add entry to Firestore
-      const docRef = await addDoc(collection(db, 'incomeExpenses'), {
-        type: newEntry.type,
-        amount: Number(newEntry.amount), // Ensure numeric data type
+      // Ensure the user's document exists
+      const userDocRef = doc(db, 'Users', user.uid);
+      await setDoc(userDocRef, { initialized: true }, { merge: true });
+
+      // Determine the subcollection to use (Income or Expenses)
+      const subCollectionName = newEntry.type === 'Income' ? 'Income' : 'Expenses';
+
+      // Reference the subcollection
+      const transactionRef = collection(db, 'Users', user.uid, 'incomeExpenses', subCollectionName);
+
+      // Add a new transaction document
+      await addDoc(transactionRef, {
+        amount: Number(newEntry.amount), // Ensure numeric type
         category: newEntry.category,
-        comments: newEntry.comments,
-        timestamp: new Date(), // Add timestamp
+        comments: newEntry.comments || '',
+        timestamp: new Date(),
       });
 
-      console.log('Document written with ID:', docRef.id);
+      console.log(`${newEntry.type} transaction added successfully!`);
 
       // Reset form and close modal
       setNewEntry({ type: '', amount: '', category: '', comments: '' });
       setShowForm(false);
     } catch (error) {
-      console.error('Error adding document:', error);
+      console.error(`Error adding ${newEntry.type} transaction: `, error);
     }
   };
+
+
 
   const handleAddNewClick = () => {
     setShowForm(true);
@@ -64,10 +97,21 @@ function IncomeExpenses() {
     setShowForm(false);
   };
 
-  const handleRemoveEntry = async (id) => {
+  const handleRemoveEntry = async (id, type) => {
     try {
-      await deleteDoc(doc(db, 'incomeExpenses', id));
-      console.log(`Document with ID ${id} deleted.`);
+      const user = auth.currentUser;
+  
+      if (!user) {
+        console.error('No user is logged in!');
+        return;
+      }
+  
+      // Determine the correct subcollection (Income or Expenses)
+      const subCollectionName = type === 'Income' ? 'Income' : 'Expenses';
+  
+      // Delete the document from the corresponding subcollection
+      await deleteDoc(doc(db, 'Users', user.uid, 'incomeExpenses', subCollectionName, id));
+      console.log(`Document with ID ${id} deleted from ${subCollectionName}.`);
     } catch (error) {
       console.error('Error deleting document:', error);
     }

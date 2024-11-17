@@ -5,7 +5,7 @@ import IncomeExpenses from './IncomeExpenses'; // Income & Expenses feature
 import React, { useState } from 'react';
 import './App.css';
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'; // to switch between pages
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
+import { setPersistence, browserLocalPersistence, signInWithEmailAndPassword, createUserWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
 import { auth,googleProvider } from './firebase-config'; // Firebase config
 import {doc,setDoc, updateDoc,} from "firebase/firestore";
 import {db} from "./firebase-config"; // import firestore instance
